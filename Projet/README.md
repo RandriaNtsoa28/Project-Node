@@ -34,7 +34,7 @@ To add a flashcard, click on the "Add Flashcards" button and fill in the questio
 
 Click the "Modifier" button on any flashcard to modify its content. Don't forget to save your changes!
 
-![Editing Flashcard](src/assets/Editing_Flashcard.png)
+![Editing Flashcard](src/assets/Editing_Flashcard_new.png)
 
 ### Deleting a Flashcard
 
