@@ -1,44 +1,71 @@
-<div *ngIf="loading" class="loading-message">
-  Chargement...
-</div>
-
-<div *ngIf="!loading && !editingFlashcard" class="subject-container">
-  <h1>Choisissez une matière</h1>
-  <div class="subject-list">
-    <button mat-raised-button color="primary" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
-      {{ subject }}
-    </button>
-    <button mat-raised-button color="accent" (click)="showAddFlashcardForm = !showAddFlashcardForm">Ajouter des flashcards</button>
+<!-- app.component.html -->
+<div class="app-container">
+  <!-- Loading indicator -->
+  <div *ngIf="loading" class="loading-message">
+    Chargement...
   </div>
-</div>
 
-<div *ngIf="showAddFlashcardForm" class="add-flashcard-form">
-  <input type="text" [(ngModel)]="newFlashcard.question" placeholder="Entrez la question">
-  <input type="text" [(ngModel)]="newFlashcard.answer" placeholder="Entrez la réponse">
-  <button mat-raised-button color="primary" (click)="addFlashcard()">Ajouter Flashcard</button>
-</div>
+  <!-- Subject Management -->
+  <div *ngIf="!loading" class="subject-management">
+    <h1>GESTION DES MATIÈRES</h1>
+    <div class="add-subject-form">
+      <input [(ngModel)]="newSubjectName" placeholder="Nouveau nom de matière">
+      <button mat-raised-button color="primary" (click)="addNewSubject()">Ajouter matière</button>
+    </div>
 
-<div *ngIf="editingFlashcard" class="edit-flashcard-form">
-  <input type="text" [(ngModel)]="editingFlashcard.question" placeholder="Entrez la question">
-  <input type="text" [(ngModel)]="editingFlashcard.answer" placeholder="Entrez la réponse">
-  <button mat-raised-button color="primary" (click)="saveFlashcard()">Sauvegarder</button>
-  <button mat-button (click)="cancelEditFlashcard()">Annuler</button>
-</div>
-
-<div *ngIf="selectedSubject && !editingFlashcard" class="flashcard-container">
-  <h2>Flashcards pour {{ selectedSubject }}</h2>
-  <div *ngFor="let card of flashcards; let i = index" class="flashcard">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ card.question }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content *ngIf="card.revealed">{{ card.answer }}</mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="revealAnswer(card)">Révéler la réponse</button>
-        <button mat-button (click)="startEditFlashcard(card, i)">Modifier</button>
-        <button mat-button (click)="removeFlashcard(i)">Supprimer</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="subject-cards">
+      <mat-card *ngFor="let subject of subjects; let i = index" class="subject-card">
+        <mat-card-content>
+          <div class="subject-title">{{ subject }}</div>
+          <button mat-button color="warn" (click)="removeSubject(subject)">Supprimer</button>
+          <button mat-button color="primary" (click)="selectSubject(subject)">Sélectionner</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <button mat-stroked-button (click)="selectedSubject = null">Retour aux matières</button>
+
+  <!-- Flashcard Management -->
+  <div *ngIf="!loading && !editingFlashcard" class="flashcard-management">
+    <h2>Choisissez une matière</h2>
+    <div class="subject-list">
+      <button mat-raised-button color="primary" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
+        {{ subject }}
+      </button>
+      <button mat-raised-button color="accent" (click)="showAddFlashcardForm = !showAddFlashcardForm">Ajouter des flashcards</button>
+    </div>
+  </div>
+
+  <!-- Add Flashcard Form -->
+  <div *ngIf="showAddFlashcardForm" class="add-flashcard-form">
+    <input type="text" [(ngModel)]="newFlashcard.question" placeholder="Entrez la question">
+    <input type="text" [(ngModel)]="newFlashcard.answer" placeholder="Entrez la réponse">
+    <button mat-raised-button color="primary" (click)="addFlashcard()">Ajouter Flashcard</button>
+  </div>
+
+  <!-- Edit Flashcard Form -->
+  <div *ngIf="editingFlashcard" class="edit-flashcard-form">
+    <input type="text" [(ngModel)]="editingFlashcard.question" placeholder="Entrez la question">
+    <input type="text" [(ngModel)]="editingFlashcard.answer" placeholder="Entrez la réponse">
+    <button mat-raised-button color="primary" (click)="saveFlashcard()">Sauvegarder</button>
+    <button mat-button (click)="cancelEditFlashcard()">Annuler</button>
+  </div>
+
+  <!-- Flashcard List -->
+  <div *ngIf="selectedSubject && !editingFlashcard" class="flashcard-container">
+    <h2>Flashcards pour {{ selectedSubject }}</h2>
+    <div *ngFor="let card of flashcards; let i = index" class="flashcard">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ card.question }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content *ngIf="card.revealed">{{ card.answer }}</mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="revealAnswer(card)">Révéler la réponse</button>
+          <button mat-button (click)="startEditFlashcard(card, i)">Modifier</button>
+          <button mat-button (click)="removeFlashcard(i)">Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <button mat-stroked-button (click)="selectedSubject = null">Retour aux matières</button>
+  </div>
 </div>

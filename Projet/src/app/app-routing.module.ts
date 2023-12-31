@@ -1,4 +1,5 @@
 // Import the new component
+// @ts-ignore
 import { LessonEditFormComponent } from './lesson-edit-form/lesson-edit-form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';

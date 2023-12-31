@@ -1,24 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router'; // Make sure to import RouterModule
-
-import { AppComponent } from './app.component';
+// ...other imports
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import {AppComponent} from "./app.component";
+import {NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
+    // ... other components
 
-    // ... other components declarations
   ],
   imports: [
+    // ... other modules
     BrowserModule,
-    RouterModule.forRoot([]),
+    BrowserAnimationsModule,
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
     AppComponent,
-    // Add RouterModule to the imports array with forRoot
-    // ... other modules imports
+    // ... other modules
   ],
   providers: [],
   bootstrap: []
 })
 export class AppModule { }
-
-

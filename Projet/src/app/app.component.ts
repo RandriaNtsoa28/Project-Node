@@ -18,6 +18,7 @@ interface Flashcard {
   imports: [CommonModule, MatButtonModule, MatCardModule, FormsModule]
 })
 export class AppComponent implements OnInit {
+  newSubjectName: string='';
   loading: boolean = true;
   subjects: string[] = ['Mathématiques', 'Physique', 'Chimie', 'Biologie', 'Histoire', 'Littérature'];
   selectedSubject: string | null = null;
@@ -160,4 +161,16 @@ export class AppComponent implements OnInit {
       this.flashcardsBySubject[this.selectedSubject].splice(index, 1);
     }
   }
+  addNewSubject(): void {
+    if (this.newSubjectName) {
+      this.subjects.push(this.newSubjectName);
+      this.flashcardsBySubject[this.newSubjectName] = [];
+      this.newSubjectName = ''; // Reset the new subject input field
+    }
+  }
+  removeSubject(subjectToRemove: string): void {
+    this.subjects = this.subjects.filter(subject => subject !== subjectToRemove);
+    delete this.flashcardsBySubject[subjectToRemove];
+  }
+
 }

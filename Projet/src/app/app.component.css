@@ -1,48 +1,35 @@
-/* Styles spécifiques à AppComponent */
-.loading-message {
-  text-align: center;
+/* app.component.css */
+
+.app-container {
   padding: 20px;
-  font-size: 1.5em;
 }
 
-.subject-container {
+.subject-management {
   text-align: center;
-  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.subject-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.add-subject-form input {
+  margin-right: 10px;
+}
+
+.subject-cards {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
   justify-content: center;
-  gap: 15px;
+  margin-top: 20px;
 }
 
-.subject-list li {
-  background-color: var(--blue);
-  color: white;
-  padding: 15px 30px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color var(--transition-speed);
-}
-
-.subject-list li:hover {
-  background-color: var(--blue-hover);
-}
-
-.flashcard-container {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: white;
+.subject-card {
+  width: 200px;
+  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
 }
 
-.flashcard {
-  margin-bottom: 20px;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 20px;
+.subject-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
+
+/* You can add more styles below as needed */
