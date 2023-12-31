@@ -1,43 +1,66 @@
-
-
-/* Définition des variables de couleurs et des styles globaux */
-:root {
-  --blue: #007bff;
-  --blue-hover: #0056b3;
-  --transition-speed: 0.3s;
-}
+/* Importer une police de caractères Google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f4f4f4;
-  color: #333;
+  background-image: url('C:/A4/node_angular/projet/src/background.png'); /* Remplacez par le chemin de votre image */
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-/* Style global pour les boutons */
-button {
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  padding: 10px 20px;
+h1 {
+  color: #007bff; /* Utilisez votre couleur primaire ici */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.subject-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 50px;
+}
+
+.subject-list button {
+  font-weight: bold;
   margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.subject-list button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.add-flashcard-form, .edit-flashcard-form {
+  margin: 20px 0;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+}
+
+input[type="text"] {
+  width: calc(100% - 20px);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color var(--transition-speed);
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--blue-hover);
+  background-color: #0056b3;
 }
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
