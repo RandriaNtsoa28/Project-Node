@@ -10,7 +10,16 @@
       {{ subject }}
     </button>
     <!-- Ajouter des flashcards -->
-    <button mat-raised-button color="accent" (click)="addFlashcards()">Ajouter des flashcards</button>
+    <!-- Formulaire d'ajout de flashcards -->
+    <div *ngIf="selectedSubject" class="add-flashcard-form">
+      <h3>Ajouter une flashcard pour {{ selectedSubject }}</h3>
+      <input type="text" [(ngModel)]="newFlashcard.question" placeholder="Entrez la question">
+      <input type="text" [(ngModel)]="newFlashcard.answer" placeholder="Entrez la réponse">
+      <button mat-raised-button color="primary" (click)="addFlashcard()">Ajouter Flashcard</button>
+    </div>
+
+    <!-- Reste du template... -->
+
   </div>
 </div>
 

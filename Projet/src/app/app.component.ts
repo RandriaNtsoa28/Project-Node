@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -22,10 +23,16 @@ interface Flashcard {
     CommonModule, // Déjà présent
     MatButtonModule,
     MatCardModule,
+    FormsModule,
     // autres modules que vous souhaitez utiliser
   ]
 })
 export class AppComponent implements OnInit {
+
+  newFlashcard: Flashcard = { question: '', answer: '', revealed: false };
+
+
+
   loading: boolean = true; // Commence avec le chargement activé
   subjects: string[] = ['Mathématiques', 'Physique', 'Chimie', 'Biologie', 'Histoire', 'Littérature'];
   selectedSubject: string | null = null; // Ajoutez cette ligne pour garder la trace de la matière sélectionnée
@@ -150,7 +157,7 @@ ngOnInit(): void {
       console.log("Ajoutez des flashcards pour la matière : " + this.selectedSubject);
     }
   }*/
-  addFlashcards(): void {
+  addFlashcardsz(): void {
     if (this.selectedSubject) {
       // Vérifiez si des flashcards existent déjà pour cette matière
       if (!this.flashcardsBySubject[this.selectedSubject]) {
@@ -171,7 +178,12 @@ ngOnInit(): void {
       this.flashcards = this.flashcardsBySubject[this.selectedSubject];
     }
   }
-
+  addFlashcard(): void {
+    if (this.selectedSubject && this.newFlashcard.question && this.newFlashcard.answer) {
+      this.flashcardsBySubject[this.selectedSubject].push({ ...this.newFlashcard });
+      this.newFlashcard = { question: '', answer: '', revealed: false }; // Réinitialiser le formulaire
+    }
+  }
 
   // Vous pouvez ajouter d'autres méthodes et propriétés nécessaires ici
 }
