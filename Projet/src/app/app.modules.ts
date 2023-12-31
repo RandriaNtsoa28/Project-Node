@@ -6,16 +6,18 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+
     // ... other components declarations
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([]) // Add RouterModule to the imports array with forRoot
+    RouterModule.forRoot([]),
+    AppComponent,
+    // Add RouterModule to the imports array with forRoot
     // ... other modules imports
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }
 
