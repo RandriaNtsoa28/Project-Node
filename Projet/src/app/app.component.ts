@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+
+
 
 // Définissez l'interface Flashcard en dehors de la classe AppComponent
 interface Flashcard {
@@ -13,7 +18,12 @@ interface Flashcard {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [CommonModule] // Ajoutez CommonModule ici
+  imports: [
+    CommonModule, // Déjà présent
+    MatButtonModule,
+    MatCardModule,
+    // autres modules que vous souhaitez utiliser
+  ]
 })
 export class AppComponent implements OnInit {
   loading: boolean = true; // Commence avec le chargement activé
@@ -26,18 +36,11 @@ export class AppComponent implements OnInit {
     // Initialisation des flashcards par défaut pour chaque matière
     this.flashcardsBySubject = {
       'Mathématiques': [
-        { question: 'Quel est le théorème de Pythagore ?', answer: 'a² + b² = c²', revealed: false },
-        { question: 'Quelle est la valeur de π (pi) ?', answer: '3.14159265359', revealed: false },
-        { question: "Quelle est la formule de l'aire d'un rectangle ?", answer: 'Longueur × Largeur', revealed: false },
-        { question: 'Quelle est la dérivée de x² par rapport à x ?', answer: '2x', revealed: false },
-        { question: "Quelle est la formule de la somme des angles intérieurs d'un polygone ?", answer: '(n - 2) × 180 degrés', revealed: false },
-        { question: 'Quelle est la racine carrée de 16 ?', answer: '4', revealed: false },
-        { question: "Quelle est la formule de la circonférence d'un cercle ?", answer: '2πr', revealed: false },
-        { question: 'Quelle est la règle des signes pour la multiplication ?', answer: 'Positif × Positif = Positif, Négatif × Négatif = Positif, Positif × Négatif = Négatif', revealed: false },
-        { question: "Quelle est la formule de la surface d'un triangle ?", answer: '(Base × Hauteur) / 2', revealed: false },
-        { question: 'Quelle est la formule de la moyenne arithmétique ?', answer: '(Somme des valeurs) / (Nombre de valeurs)', revealed: false },
+        { question: 'Quel est le théorème de Pythagore ?', answer: 'a²+b² = c²', revealed: false },
+        { question: 'Quand il triangle est-il isocèle ? ', answer: '2 côtés égaux', revealed: false },
+        // Ajoutez d'autres flashcards pour les mathématiques si nécessaire
       ],
-        'Physique': [
+      'Physique': [
         { question: 'Question A', answer: 'Réponse A', revealed: false },
         { question: 'Question B', answer: 'Réponse B', revealed: false }
       ],
@@ -83,19 +86,9 @@ ngOnInit(): void {
   }
 
   // Méthode pour révéler la réponse d'une flashcard
-  // Méthode pour basculer la visibilité de la réponse d'une flashcard
   revealAnswer(card: Flashcard): void {
-    // Si la carte est déjà révélée, cachez la question et la réponse
-    if (card.revealed) {
-      card.revealed = false;
-    } else {
-      // Si la carte n'est pas révélée, cachez toutes les réponses ouvertes
-      // et révélez la carte cliquée
-      this.flashcards.forEach(fc => fc.revealed = false);
-      card.revealed = true;
-    }
+    card.revealed = !card.revealed; // Cela va basculer l'état de la propriété 'revealed'
   }
-
   /*addFlashcards(): void {
     if (this.selectedSubject) {
       // Ajoutez ici la logique pour ajouter des flashcards à la matière sélectionnée
@@ -126,30 +119,6 @@ ngOnInit(): void {
       this.flashcards = this.flashcardsBySubject[this.selectedSubject];
     }
   }
-
-  editFlashcard(index: number): void {
-    // Obtenez la flashcard à éditer
-    const flashcardToEdit = this.flashcards[index];
-    // Logique pour modifier la flashcard
-    // ...
-  }
-  /*editFlashcard(index: number): void {
-    // Logique pour modifier la flashcard à l'index spécifié
-    // Vous pourriez utiliser un formulaire ou une boîte de dialogue pour modifier la flashcard
-  }*/
-
-  deleteFlashcard(index: number): void {
-    // Confirmez la suppression et retirez la flashcard du tableau
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette flashcard ?')) {
-      this.flashcards.splice(index, 1);
-    }
-  }/*deleteFlashcard(index: number): void {
-    // Logique pour supprimer la flashcard à l'index spécifié
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette flashcard ?')) {
-      this.flashcards.splice(index, 1);
-    }
-  }*/
-
 
 
   // Vous pouvez ajouter d'autres méthodes et propriétés nécessaires ici

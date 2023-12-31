@@ -1,65 +1,29 @@
+<!-- app.component.html -->
 <div *ngIf="loading" class="loading-message">
   Chargement...
 </div>
 
-
-
 <div *ngIf="!loading" class="subject-container">
   <h1>Choisissez une matière</h1>
-  <ul class="subject-list">
-    <li *ngFor="let subject of subjects" (click)="selectSubject(subject)">{{ subject }}</li>
-    <!-- Bouton "Ajouter des flashcards" -->
-    <li>
-      <button (click)="addFlashcards()">Ajouter des flashcards</button>
-    </li>
-  </ul>
+  <div class="subject-list">
+    <button mat-raised-button color="primary" *ngFor="let subject of subjects" (click)="selectSubject(subject)">
+      {{ subject }}
+    </button>
+    <!-- Ajouter des flashcards -->
+    <button mat-raised-button color="accent" (click)="addFlashcards()">Ajouter des flashcards</button>
+  </div>
 </div>
 
-<!-- Ajoutez cette partie en dessous de la liste des matières-->
 <div *ngIf="selectedSubject" class="flashcard-container">
   <h2>Flashcards pour {{ selectedSubject }}</h2>
-  <div *ngFor="let card of flashcards; let i = index" class="flashcard" (click)="revealAnswer(card)">
-    <!-- Les boutons Modifier et Supprimer sont toujours visibles -->
-    <button (click)="editFlashcard(i); $event.stopPropagation();">Modifier</button>
-    <button (click)="deleteFlashcard(i); $event.stopPropagation();">Supprimer</button>
-
-    <div class="flashcard-content" *ngIf="card.revealed">
-      <p>Flashcard #{{ i + 1 }}</p>
-      <p>{{ card.question }}</p>
-      <p>{{ card.answer }}</p>
-    </div>
-  </div>
-
-  <!-- Les boutons en bas de la page -->
-  <div class="bottom-buttons">
-    <button (click)="addFlashcards()">Ajouter des flashcards</button>
-    <button class="return-button" (click)="selectedSubject = null">Retour aux matières</button>
-  </div>
+  <mat-card *ngFor="let card of flashcards" class="flashcard">
+    <mat-card-header>
+      <mat-card-title>{{ card.question }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="card.revealed">{{ card.answer }}</mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="revealAnswer(card)">Révéler la réponse</button>
+    </mat-card-actions>
+  </mat-card>
+  <button mat-stroked-button (click)="selectedSubject = null">Retour aux matières</button>
 </div>
-
-
-<!--<div *ngIf="selectedSubject" class="flashcard-container">
-  <!-- Vos flashcards ici -->
-
-  <!--<div *ngIf="selectedSubject" class="flashcard-container">
-    <h2>Flashcards pour {{ selectedSubject }}</h2>
-    <div *ngFor="let card of flashcards; let i = index" class="flashcard">
-      <p>Flashcard #{{ i + 1 }}</p>
-      <p>{{ card.question }}</p>
-      <button (click)="revealAnswer(card)">Révéler la réponse</button>
-      <p *ngIf="card.revealed">{{ card.answer }}</p>
-    </div>
-    <button (click)="selectedSubject = null">Retour aux matières</button>
-
-  <div class="bottom-buttons">
-    <button (click)="addFlashcards()">Ajouter des flashcards</button>
-    <button (click)="editFlashcard()">Modifier une flashcard</button>
-    <button (click)="deleteFlashcard()">Supprimer des flashcards</button>
-    <button class="return-button" (click)="selectedSubject = null">Retour aux matières</button>
-  </div>
-</div>
-</div>
--->
-
-
-

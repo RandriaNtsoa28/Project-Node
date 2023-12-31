@@ -1,129 +1,40 @@
-.loading-message {
-  text-align: center;
-  padding: 20px;
-}
-/*.
-.subject-container {
-  text-align: center;
-  margin-top: 20px;
-}
 
-.subject-list {
-  list-style-type: none;
-  padding: 0;
+
+/* Définition des variables de couleurs et des styles globaux */
+:root {
+  --blue: #007bff;
+  --blue-hover: #0056b3;
+  --transition-speed: 0.3s;
 }
 
-.subject-list li {
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  margin: 5px;
-  display: inline-block;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-.subject-list li:hover {
-  background-color: #0056b3;
-}*/
-
-
-
-/* Style général pour les boutons */
+/* Style global pour les boutons */
 button {
+  background-color: var(--blue);
+  color: white;
+  border: none;
   padding: 10px 20px;
-  margin: 0 5px; /* Espacement horizontal entre les boutons */
-  background-color: #007bff; /* Couleur de fond bleue */
-  color: white; /* Texte en blanc */
-  border: none; /* Pas de bordure */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Curseur en forme de main au survol */
-  transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
 }
 
 button:hover {
-  background-color: #0056b3; /* Couleur plus foncée au survol */
+  background-color: var(--blue-hover);
 }
 
-/* Style pour le container des matières */
-.subject-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px; /* Réduisez cette valeur pour abaisser le bloc des matières */
-  padding: 20px 0;
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* Style pour la liste qui contient les noms des matières */
-.subject-list {
-  display: flex; /* Utiliser flexbox pour un alignement flexible */
-  flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne si nécessaire */
-  justify-content: center; /* Centrer les éléments horizontalement */
-  gap: 10px; /* Espacement entre les éléments */
-  margin-bottom: 30px; /* Espacement en dessous de la liste */
-}
-
-/* Style pour les éléments de liste pour les faire ressembler à des boutons */
-.subject-list li {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px; /* Ajuster le padding pour changer la taille des boutons */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.subject-list li:hover {
-  background-color: #0056b3; /* Couleur plus foncée au survol */
-}
-
-.flashcard-container {
-  display: flex; /* Makes the container a flex container */
-  flex-wrap: wrap; /* Allows flashcards to wrap onto the next line */
-  justify-content: center; /* Centers flashcards horizontally */
-  gap: 10px; /* Adds space between the flashcards */
-}
-
-
-.flashcard {
-  /* ... existing styles ... */
-  flex: 0 1 200px; /* Don't grow, may shrink, and start at 200px width */
-  /* Or you could use max-width */
-  /*max-width: 200px; /* Set a max-width for each card */
-
-  /*backround-color: #007bff; /* Couleur de fond pour la flashcard */
-  /*color: white; /* Texte en blanc pour une meilleure visibilité */
-  /*overflow: hidden; /* Cache le contenu débordant du conteneur */
-}
-.flashcard-content {
-  display: none; /* Cache le contenu par défaut */
-}
-
-.flashcard.revealed .flashcard-content {
-  display: block; /* Affiche le contenu lorsque la carte est révélée */
-}
-
-
-/* Conteneur pour le message de chargement */
-.loading-message {
-  /* ... styles existants pour le message de chargement ... */
-}
-
-/* Assurez-vous que tout le contenu est centré dans le body */
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Aligner le contenu au début pour éviter l'espacement excessif */
-}
-
-.bottom-buttons {
-  display: flex;
-  justify-content: space-around; /* Distribue l'espace autour des boutons */
-  align-items: center;
-  margin-top: auto; /* Pousse les boutons en bas */
-}
