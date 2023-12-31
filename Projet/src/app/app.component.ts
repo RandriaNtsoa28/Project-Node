@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
   flashcards: Flashcard[] = [];
   flashcardsBySubject: { [subject: string]: Flashcard[] } = {};
   newFlashcard: Flashcard = { question: '', answer: '', revealed: false };
+  editingFlashcardIndex: number | null = null;
+  editingFlashcard: Flashcard | null = null;
   showAddFlashcardForm: boolean = false;
+
   constructor() {
 
     // ...initialisation des flashcards par défaut pour chaque matière (comme déjà défini)...
@@ -106,14 +109,15 @@ export class AppComponent implements OnInit {
 
     }}
 
-
-
   ngOnInit(): void {
     setTimeout(() => this.loading = false, 2000);
   }
 
   selectSubject(subject: string): void {
     this.selectedSubject = subject;
+    this.showAddFlashcardForm = false;
+    this.editingFlashcard = null;
+    this.editingFlashcardIndex = null;
     if (!this.flashcardsBySubject[subject]) {
       this.flashcardsBySubject[subject] = [];
     }
@@ -128,8 +132,28 @@ export class AppComponent implements OnInit {
     if (this.selectedSubject && this.newFlashcard.question && this.newFlashcard.answer) {
       this.flashcardsBySubject[this.selectedSubject].push({ ...this.newFlashcard });
       this.newFlashcard = { question: '', answer: '', revealed: false };
-      this.showAddFlashcardForm = false; // Cacher le formulaire après l'ajout
-    }}
+      this.showAddFlashcardForm = false;
+    }
+  }
+
+  startEditFlashcard(card: Flashcard, index: number): void {
+    this.editingFlashcardIndex = index;
+    this.editingFlashcard = { ...card };
+    this.showAddFlashcardForm = false;
+  }
+
+  saveFlashcard(): void {
+    if (this.selectedSubject !== null && this.editingFlashcardIndex !== null && this.editingFlashcard) {
+      this.flashcardsBySubject[this.selectedSubject][this.editingFlashcardIndex] = { ...this.editingFlashcard };
+      this.editingFlashcard = null;
+      this.editingFlashcardIndex = null;
+    }
+  }
+
+  cancelEditFlashcard(): void {
+    this.editingFlashcardIndex = null;
+    this.editingFlashcard = null;
+  }
 
   removeFlashcard(index: number): void {
     if (this.selectedSubject) {
