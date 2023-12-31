@@ -1,27 +1,69 @@
-# Projet
+# NAM e-Learning Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+Welcome to the NAM e-Learning Platform - a modern, intuitive, and interactive platform for online education. Our platform allows learners to engage with educational content through flashcards on various subjects.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Subject Selection**: Choose from a variety of subjects including Mathematics, Physics, Chemistry, Biology, History, and Literature.
+- **Flashcard Interaction**: Add, edit, and delete flashcards to customize your learning experience.
+- **Responsive Design**: Our platform is fully responsive, providing a seamless experience on both desktop and mobile devices.
 
-## Code scaffolding
+## How to Use
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Choosing a Subject
 
-## Build
+Upon loading the application, you'll be greeted with a selection of subjects.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Subject Selection](src/assets/Subject_Selection.png)
 
-## Running unit tests
+### Viewing Flashcards
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+After selecting a subject, you'll see a list of flashcards. Click on a flashcard to reveal the answer.
 
-## Running end-to-end tests
+![Flashcards View](src/assets/Flashcards View.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Adding a Flashcard
 
-## Further help
+To add a flashcard, click on the "Add Flashcards" button and fill in the question and answer fields.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Adding Flashcard](src/assets/Ajout before.png)
+![Adding Flashcard](src/assets/Ajout after.png)
+
+### Editing a Flashcard
+
+Click the "Edit" button on any flashcard to modify its content. Don't forget to save your changes!
+
+![Editing Flashcard](src/assets/Editing Flashcard.png)
+
+### Deleting a Flashcard
+
+If you need to remove a flashcard, simply click the "Delete" button on the card you wish to remove.
+
+![Deleting Before](src/assets/Deleting before.png)
+![Deleting After](src/assets/Deleting after.png)
+
+## Installation
+
+To run this application locally:
+
+1. Clone the repository:
+git clone https://github.com/RandriaNtsoa28/Project-Node.git
+
+2. Navigate to the project directory:
+cd Project-Node/Projet
+
+3. Install the dependencies:
+npm install
+
+4. Serve the application:
+ng serve
+
+5. Open your browser and go to `http://localhost:4200/`.
+
+## Contributions
+
+We welcome contributions to our project. If you have suggestions or improvements, please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
