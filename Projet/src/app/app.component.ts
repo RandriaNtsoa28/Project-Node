@@ -2,16 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
-
-
-
-// Définissez l'interface Flashcard en dehors de la classe AppComponent
 interface Flashcard {
   question: string;
   answer: string;
-  revealed: boolean; // Ajout de la propriété revealed pour chaque flashcard
+  revealed: boolean;
 }
 
 @Component({
@@ -19,27 +15,19 @@ interface Flashcard {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  imports: [
-    CommonModule, // Déjà présent
-    MatButtonModule,
-    MatCardModule,
-    FormsModule,
-    // autres modules que vous souhaitez utiliser
-  ]
+  imports: [CommonModule, MatButtonModule, MatCardModule, FormsModule]
 })
 export class AppComponent implements OnInit {
-
-  newFlashcard: Flashcard = { question: '', answer: '', revealed: false };
-
-
-
-  loading: boolean = true; // Commence avec le chargement activé
+  loading: boolean = true;
   subjects: string[] = ['Mathématiques', 'Physique', 'Chimie', 'Biologie', 'Histoire', 'Littérature'];
-  selectedSubject: string | null = null; // Ajoutez cette ligne pour garder la trace de la matière sélectionnée
-  flashcards: Flashcard[] = []; // Ajoutez cette ligne pour stocker les flashcards
-  //flashcardsBySubject: { [subject: string]: Flashcard[] } = {}; // Ajoutez cette ligne
-
+  selectedSubject: string | null = null;
+  flashcards: Flashcard[] = [];
+  flashcardsBySubject: { [subject: string]: Flashcard[] } = {};
+  newFlashcard: Flashcard = { question: '', answer: '', revealed: false };
+  showAddFlashcardForm: boolean = false;
   constructor() {
+
+    // ...initialisation des flashcards par défaut pour chaque matière (comme déjà défini)...
     // Initialisation des flashcards par défaut pour chaque matière
     this.flashcardsBySubject = {
       'Mathématiques': [
@@ -116,74 +104,36 @@ export class AppComponent implements OnInit {
       ]
 
 
-    };
+    }}
 
-  // Initialisez la liste des sujets
-  this.subjects = Object.keys(this.flashcardsBySubject);
-}
-ngOnInit(): void {
-  // Utilisez setTimeout pour simuler un processus de chargement
-  setTimeout(() => {
-    this.loading = false; // Cela devrait déclencher l'affichage de vos matières après 2 secondes
-  }, 2000);
-}
 
-  // Utilisez un objet pour stocker les flashcards par matière
-  flashcardsBySubject: { [subject: string]: Flashcard[] } = {};
+
+  ngOnInit(): void {
+    setTimeout(() => this.loading = false, 2000);
+  }
 
   selectSubject(subject: string): void {
     this.selectedSubject = subject;
-
-    // Vérifiez si des flashcards existent déjà pour cette matière
     if (!this.flashcardsBySubject[subject]) {
-      // Si elles n'existent pas, initialisez le tableau de flashcards pour cette matière
       this.flashcardsBySubject[subject] = [];
     }
-
-    // Chargez les flashcards pour la matière sélectionnée
     this.flashcards = this.flashcardsBySubject[subject];
   }
 
-  // Méthode pour révéler la réponse d'une flashcard
   revealAnswer(card: Flashcard): void {
-    card.revealed = !card.revealed; // Cela va basculer l'état de la propriété 'revealed'
+    card.revealed = !card.revealed;
   }
-  /*addFlashcards(): void {
-    if (this.selectedSubject) {
-      // Ajoutez ici la logique pour ajouter des flashcards à la matière sélectionnée
-      // Par exemple, vous pouvez afficher une boîte de dialogue/modale pour ajouter les flashcards.
-      // Vous pouvez également naviguer vers une autre page pour gérer l'ajout de flashcards.
-      // Assurez-vous de personnaliser cette fonction en fonction de vos besoins.
-      console.log("Ajoutez des flashcards pour la matière : " + this.selectedSubject);
-    }
-  }*/
-  addFlashcardsz(): void {
-    if (this.selectedSubject) {
-      // Vérifiez si des flashcards existent déjà pour cette matière
-      if (!this.flashcardsBySubject[this.selectedSubject]) {
-        // Si elles n'existent pas, initialisez le tableau de flashcards pour cette matière
-        this.flashcardsBySubject[this.selectedSubject] = [];
-      }
 
-      // Ajoutez une nouvelle flashcard à la matière sélectionnée
-      const newFlashcard: Flashcard = {
-        question: 'Nouvelle question',
-        answer: 'Nouvelle réponse',
-        revealed: false
-      };
-
-      this.flashcardsBySubject[this.selectedSubject].push(newFlashcard);
-
-      // Mettez à jour les flashcards affichées pour la matière sélectionnée
-      this.flashcards = this.flashcardsBySubject[this.selectedSubject];
-    }
-  }
   addFlashcard(): void {
     if (this.selectedSubject && this.newFlashcard.question && this.newFlashcard.answer) {
       this.flashcardsBySubject[this.selectedSubject].push({ ...this.newFlashcard });
-      this.newFlashcard = { question: '', answer: '', revealed: false }; // Réinitialiser le formulaire
+      this.newFlashcard = { question: '', answer: '', revealed: false };
+      this.showAddFlashcardForm = false; // Cacher le formulaire après l'ajout
+    }}
+
+  removeFlashcard(index: number): void {
+    if (this.selectedSubject) {
+      this.flashcardsBySubject[this.selectedSubject].splice(index, 1);
     }
   }
-
-  // Vous pouvez ajouter d'autres méthodes et propriétés nécessaires ici
 }
