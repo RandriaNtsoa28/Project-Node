@@ -4,7 +4,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #f4f4f4;
-  background-image: url('C:/A4/node_angular/projet/src/background.png'); /* Remplacez par le chemin de votre image */
+  background-image: url('C:/A4/node_angular/Project-Node/Projet/src/assets/background.png'); /* Remplacez par le chemin de votre image */
   background-size: cover;
   background-attachment: fixed;
 }
